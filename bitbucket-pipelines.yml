@@ -1,0 +1,28 @@
+# This is a sample build configuration for Other.
+# Check our guides at https://confluence.atlassian.com/x/5Q4SMw for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+# image: atlassian/default-image:latest
+
+image: python
+pipelines:
+    branches:
+        staging:
+            - step:
+                name: Staging
+                deployment: staging
+                script:
+                - ssh -o StrictHostKeyChecking=no $STAGING_HOST -l deploy './bin/pipeline.sh staging'
+        master:
+            - step:
+                name: Production
+                deployment: production
+                script:
+                - ssh -o StrictHostKeyChecking=no $PRODUCTION_HOST -l deploy './bin/pipeline.sh master'
+        develop:
+            - step:
+                name: Develop
+                deployment: test
+                script:
+                - ssh -o StrictHostKeyChecking=no $TEST_HOST -l deploy './bin/pipeline.sh develop'

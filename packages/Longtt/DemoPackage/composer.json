@@ -1,0 +1,21 @@
+{
+    "name": "longtt/facebookapi",
+    "description": "facebook api for vaymuon",
+    "authors": [
+        {
+            "name": "longtt",
+            "email": "thanhlong29689@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload": {
+        "classmap": [
+            "database"
+        ],
+        "psr-4": {
+            "App\\": "app/",
+            "Longtt\\User\\": "packages/longtt/user/src"
+        }
+    }
+}
